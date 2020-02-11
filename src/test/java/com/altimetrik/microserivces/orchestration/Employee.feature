@@ -19,6 +19,7 @@
 Feature: Test Employee API's
 	Background:
 		* url apiURL
+		* def createData = read('classpath:com/altimetrik/microserivces/orchestration/createEmp.json')
   	* print apiURL
 	
   Scenario: Create Employee
@@ -26,10 +27,10 @@ Feature: Test Employee API's
   
     Given url apiURL
     And path 'api/users'
-    And request {"name": "Ajit","last_name": "Bhavle","job": "SDET"}
+    And request createData
     When method POST
     Then status 201
-    And match response contains {name:"Ajit",job:"SDET"}
+    And match response contains {name:"Ajit Bhavle",job:"SDET"}
     And print response.name 
     
     
@@ -37,4 +38,4 @@ Feature: Test Employee API's
     Given url apiURL
     And path 'api/users?page=2' 
     When method get
-    Then status 201
+    Then status 200

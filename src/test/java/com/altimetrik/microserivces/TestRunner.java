@@ -1,4 +1,4 @@
-package com.altimetrik.TestFeatures;
+package com.altimetrik.microserivces;
 
 import static org.junit.Assert.assertTrue;
 
@@ -22,13 +22,13 @@ import net.masterthought.cucumber.ReportBuilder;
 /*@CucumberOptions( features = "classpath:com/altimetrik/TestFeatures/", plugin = {
 		"com.cucumber.ExtentCucumberFormatter:D:\\Users\\ABhavle\\eclipse-workspace\\Karate_API_Automation\\target\\html-report\\Karate_ExtentReport1.html",
 		"html:target/html-report" , "pretty" })*/
-@KarateOptions(features = {"classpath:com/altimetrik/TestFeatures/"})
+@KarateOptions(features = {"classpath:com/altimetrik/microserivces/orchestration/"})
 
 public class TestRunner {
 	@Test
 	public void testParallel() {
 		String karateOutputPath = "target/surefire-reports";
-		Results results = Runner.parallel(getClass(), 2,karateOutputPath	);
+		Results results = Runner.parallel(getClass(), 2,karateOutputPath);
         generateReport(results.getReportDir());
         assertTrue(results.getErrorMessages(), results.getFailCount() == 0);  
 	}
